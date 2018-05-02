@@ -1,0 +1,66 @@
+@import 'navbar.css';
+@import 'footer.css';
+@import 'colorscheme-dark.css';
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+#app-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  background-color: var(--dark-bg-color);
+}
+
+.inactive {
+  display: none;
+}
+.active {
+  display: flex;
+}
+
+main {
+  flex-grow: 1;
+  background-color: var(--main-bg-color);
+}
+
+.content {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  flex-grow: 1;
+  flex-flow: column;
+}
+.home, .mobile, .blog, .contact {
+  min-height: 10em;
+}
+.overlay {
+  background-color: hsla(120, 60%, 70%, 0.3);
+}
+#home {
+  flex-grow: 1;
+  
+  background: linear-gradient(45deg, hsl(20, 100%, 60%, 1) 50%, hsla(120, 60%, 70%, 1) 50%,);
+  background: -o-linear-gradient(to bottom right, hsla(20, 100%, 60%, 1) 50%, hsla(120, 60%, 70%, 1) 50%,);
+  background: -moz-linear-gradient(to bottom right, hsla(20, 100%, 60%, 1) 50%, hsla(120, 60%, 70%, 1) 50%,);
+  background: -webkit-linear-gradient(to bottom right, hsla(20, 100%, 60%, 1) 50%, hsla(120, 60%, 70%, 1) 50%,);
+  background: -ms-linear-gradient(to bottom right, hsla(20, 100%, 60%, 1) 50%, hsla(120, 60%, 70%, 1) 50%,);
+}
+#mobile {
+  flex-grow: 1;
+  background-color: green;
+}
+#blog {
+  flex-grow: 1;
+  background-color: yellow;
+}
+#contact {
+  flex-grow: 1;
+  background-color: blue;
+}
