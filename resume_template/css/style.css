@@ -18,48 +18,68 @@ html, body {
   background-color: var(--dark-bg-color);
 }
 
-.inactive {
-  display: none;
-}
-.active {
-  display: flex;
-}
-
 main {
   flex-grow: 1;
   background-color: var(--main-bg-color);
 }
 
-.content {
-  display: flex;
-  justify-content: space-evenly;
+#content {
+  height:100%;
+  background-image: url('../resources/image.jpg');
+}
+.lower, .upper {
   height: 100%;
-  flex-grow: 1;
-  flex-flow: column;
+  --opacity: 0.4;
 }
-.home, .mobile, .blog, .contact {
-  min-height: 10em;
+.lower {
+  background: linear-gradient(
+    45deg,
+    hsla(0, 100%, 60%, var(--opacity)) 0%,
+    hsla(0, 100%, 60%, var(--opacity)) 10%,
+    hsla(25, 100%, 60%, var(--opacity)) 10%,
+    hsla(25, 100%, 60%, var(--opacity)) 20%,
+    hsla(50, 100%, 60%, var(--opacity)) 20%,
+    hsla(50, 100%, 60%, var(--opacity)) 30%,
+    hsla(75, 100%, 60%, var(--opacity)) 30%,
+    hsla(75, 100%, 60%, var(--opacity)) 40%,
+    hsla(100, 100%, 60%, var(--opacity)) 40%,
+    hsla(100, 100%, 60%, var(--opacity)) 50%,
+    hsla(125, 100%, 60%, var(--opacity)) 50%,
+    hsla(125, 100%, 60%, var(--opacity)) 60%,
+    hsla(150, 100%, 60%, var(--opacity)) 60%,
+    hsla(150, 100%, 60%, var(--opacity)) 70%,
+    hsla(175, 100%, 60%, var(--opacity)) 70%,
+    hsla(175, 100%, 60%, var(--opacity)) 80%,
+    hsla(200, 100%, 60%, var(--opacity)) 80%,
+    hsla(200, 100%, 60%, var(--opacity)) 90%,
+    hsla(225, 100%, 60%, var(--opacity)) 90%,
+    hsla(225, 100%, 60%, var(--opacity)) 100%,
+    hsla(250, 100%, 60%, var(--opacity)) 100%
+    );
 }
-.overlay {
-  background-color: hsla(120, 60%, 70%, 0.3);
-}
-#home {
-  flex-grow: 1;
-  background: linear-gradient(45deg, hsl(20, 100%, 60%) 50%, hsl(120, 60%, 70%) 50%,);
-  background: -o-linear-gradient(45deg, hsl(20, 100%, 60%) 50%, hsl(120, 60%, 70%) 50%,);
-  background: -moz-linear-gradient(45deg, hsl(20, 100%, 60%) 50%, hsl(120, 60%, 70%) 50%,);
-  background: -webkit-linear-gradient(45deg, hsl(20, 100%, 60%) 50%, hsl(120, 60%, 70%) 50%,);
-  background: -ms-linear-gradient(45deg hsl(20, 100%, 60%) 50%, hsl(120, 60%, 70%) 50%,);
-}
-#mobile {
-  flex-grow: 1;
-  background-color: green;
-}
-#blog {
-  flex-grow: 1;
-  background-color: yellow;
-}
-#contact {
-  flex-grow: 1;
-  background-color: blue;
+.upper {
+  background: linear-gradient(
+    -45deg,
+    hsla(0, 100%, 60%, var(--opacity)) 0%,
+    hsla(0, 100%, 60%, var(--opacity)) 10%,
+    hsla(25, 100%, 60%, var(--opacity)) 10%,
+    hsla(25, 100%, 60%, var(--opacity)) 20%,
+    hsla(50, 100%, 60%, var(--opacity)) 20%,
+    hsla(50, 100%, 60%, var(--opacity)) 30%,
+    hsla(75, 100%, 60%, var(--opacity)) 30%,
+    hsla(75, 100%, 60%, var(--opacity)) 40%,
+    hsla(100, 100%, 60%, var(--opacity)) 40%,
+    hsla(100, 100%, 60%, var(--opacity)) 50%,
+    hsla(125, 100%, 60%, var(--opacity)) 50%,
+    hsla(125, 100%, 60%, var(--opacity)) 60%,
+    hsla(150, 100%, 60%, var(--opacity)) 60%,
+    hsla(150, 100%, 60%, var(--opacity)) 70%,
+    hsla(175, 100%, 60%, var(--opacity)) 70%,
+    hsla(175, 100%, 60%, var(--opacity)) 80%,
+    hsla(200, 100%, 60%, var(--opacity)) 80%,
+    hsla(200, 100%, 60%, var(--opacity)) 90%,
+    hsla(225, 100%, 60%, var(--opacity)) 90%,
+    hsla(225, 100%, 60%, var(--opacity)) 100%,
+    hsla(250, 100%, 60%, var(--opacity)) 100%
+    );
 }

@@ -1,10 +1,8 @@
 .footer {
-  display: flex;
-  flex-flow: row;
   justify-content: center;
   background-color: var(--dark-bg-color);
   color: var(--fg-color);
 }
 .footer-item {
-  font-size: 1.3em;
+  font-size: 2em;
 }

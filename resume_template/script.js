@@ -1,137 +1,88 @@
-let templates = ['content', 'navbar', 'footer', 'placeholder'];
-
-var template_rules = '';
-template_rules += 
-  `<template id="navbar">
-      <div class="nav-item nav-banner">
-        <div class="nav-item nav-logo">YourNameHere</div>
-        <div class="nav-item nav-burger inactive toggle"><i class="fas fa-bars"></i></div>
+Vue.component('navbar', {
+  template: `
+    <nav class="navbar is-dark is-transparent" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <div class="navbar-item"></div>
+        <div class="navbar-burger burger" v-bind:class="{ 'is-active': isActive }" @click="onToggleMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      <div class="nav-item nav-menu">
-        <div class="nav-item nav-button">Home</div>
-        <div class="nav-item nav-button">Mobile</div>
-        <div class="nav-item nav-button">Blog</div>
-        <div class="nav-item nav-button">Contact</div>
+      <div class="navbar-menu" v-bind:class="{ 'is-active': isActive }">
+        <div class="navbar-start"></div>
+        <div class="navbar-end">
+          <a class="navbar-item" v-for="navlink in navlinks" :href="navlink.link">{{ navlink.title }}</a>
+        </div>
       </div>
-  </template>`;
-template_rules += 
-  `<template id='footer'>
-      <div class="footer-item toggle placeholder-toggle"><i class="far fa-square"></i></div>
-      <div class="footer-item toggle burger-toggle"><i class="far fa-square"></i></div>
-      <div class="footer-item toggle"><i class="far fa-square"></i></div>
-      <div class="footer-item"><i class="fab fa-github-square fa-fw"></i></div>
-      <div class="footer-item"><i class="fab fa-linkedin"></i></div>
-      <div class="footer-item"><i class="fas fa-leaf fa-fw"></i></div>
-      <div class="footer-item">© 2018 - krtan All rights reserved</div>
-  </template>`;
-template_rules +=
-  `<template id="content">
-    <div id="home"><div class="overlay"><div class="placeholder active"></div></div></div>
-    <div id="mobile"><div class="overlay"><div class="placeholder active"></div></div></div>
-    <div id="blog"><div class="overlay">c</div></div>
-    <div id="contact"><div class="overlay">d</div></div>
-  </template>`
-
-
-
-
-
-template_rules +=
-  `<template id="placeholder">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rutrum tellus pellentesque eu tincidunt tortor. Vel pretium lectus quam id. Enim neque volutpat ac tincidunt vitae semper. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Aliquet lectus proin nibh nisl condimentum id venenatis a. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Enim diam vulputate ut pharetra. Blandit massa enim nec dui nunc. Vel pharetra vel turpis nunc eget lorem dolor. Euismod elementum nisi quis eleifend quam adipiscing vitae. Scelerisque viverra mauris in aliquam sem fringilla ut. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Consequat nisl vel pretium lectus.
-
-    Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Gravida quis blandit turpis cursus. In fermentum posuere urna nec tincidunt praesent semper feugiat. Massa tempor nec feugiat nisl pretium fusce. Id leo in vitae turpis massa sed elementum. Tristique sollicitudin nibh sit amet commodo. Tristique senectus et netus et malesuada fames ac. Porttitor rhoncus dolor purus non. Tortor at risus viverra adipiscing at. A scelerisque purus semper eget duis at tellus at.
-
-    Mauris ultrices eros in cursus turpis massa. Integer eget aliquet nibh praesent tristique magna sit amet. Eu lobortis elementum nibh tellus molestie nunc non blandit massa. Montes nascetur ridiculus mus mauris vitae. Id velit ut tortor pretium viverra suspendisse potenti nullam. In eu mi bibendum neque egestas congue quisque. Sit amet volutpat consequat mauris. Porttitor lacus luctus accumsan tortor. Tincidunt augue interdum velit euismod in pellentesque massa placerat duis. Nunc non blandit massa enim nec. Pretium viverra suspendisse potenti nullam ac tortor. Faucibus in ornare quam viverra. Aliquet eget sit amet tellus cras. Nunc consequat interdum varius sit amet mattis vulputate. A diam maecenas sed enim ut sem viverra. Diam maecenas ultricies mi eget mauris pharetra. Faucibus a pellentesque sit amet porttitor eget dolor morbi. Eu facilisis sed odio morbi quis commodo. Proin libero nunc consequat interdum varius sit amet mattis vulputate. Interdum velit laoreet id donec ultrices tincidunt arcu non.
-
-    Eget egestas purus viverra accumsan in nisl nisi. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ultricies mi quis hendrerit dolor magna eget est. In iaculis nunc sed augue lacus viverra vitae congue. Faucibus purus in massa tempor. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Egestas quis ipsum suspendisse ultrices gravida dictum. Gravida neque convallis a cras semper. Pretium aenean pharetra magna ac placerat. Praesent tristique magna sit amet purus gravida. Volutpat sed cras ornare arcu dui. Ut eu sem integer vitae. Nisi quis eleifend quam adipiscing. Purus ut faucibus pulvinar elementum integer.
-
-    Ut tristique et egestas quis ipsum suspendisse ultrices. Gravida neque convallis a cras. Arcu risus quis varius quam quisque. Tristique et egestas quis ipsum suspendisse ultrices gravida. Sit amet porttitor eget dolor morbi. Id semper risus in hendrerit gravida rutrum quisque. At tempor commodo ullamcorper a. Quam viverra orci sagittis eu volutpat odio. Felis donec et odio pellentesque diam volutpat. Risus ultricies tristique nulla aliquet enim tortor. Tincidunt tortor aliquam nulla facilisi cras.
-  </template>`;
-
-
-
-
-// Template injector
-function injectTemplate() {
-  for (i=0; i < templates.length; i++){
-    template = templates[i];
-    console.log(`Injecting ${template} template.`);
-    let elem = document.getElementsByClassName(`${template}`);
-    for (e=0; e < elem.length; e++){
-      template_data = new DOMParser().parseFromString(template_rules, 'text/html').querySelector(`#${template}`);
-      elem[e].innerHTML = template_data.innerHTML;
+		</nav>
+  `,
+  data() {
+    return {
+      isActive: false,
+      navlinks: [
+        { 'title': 'About', 'link': '#about', },
+        { 'title': 'Work', 'link': '#work', },
+        { 'title': 'Contact', 'link': '#contact', },
+      ],
+    };
+  },
+  methods: {
+    onToggleMenu() {
+      this.isActive = !this.isActive;
     }
-  }
-  console.log("Injected");
-  bindEventListener();
-} 
-window.onload = function(){ injectTemplate() }
+  },
+});
 
+Vue.component('footerbar', {
+  template: `
+      <div class="content has-text-centered">
+      <a class="footer-item" v-for="footerlink in footerlinks" :href="footerlink.link"><i :class="footerlink.icon"></i></a>
+      </div>
+  `,
+  data() {
+    return {
+      footerlinks: [
+        {'title': 'Github', 'link': 'https://github.com/krtan', 'icon': 'fab fa-github-square' },
+        {'title': 'LinkedIn', 'link': 'https://linkedin.com/in/kevin-tan-b1a40a149/', 'icon': 'fab fa-linkedin' },
+        {'title': 'Github', 'link': 'https://github.com/krtan', 'icon': 'fab fa-github-square' },
+      ],
+    };
+  },
+});
 
-function setState(classname, state){
-  let elem = document.getElementsByClassName(`${classname}`);
-  for (i=0; i < elem.length; i++){
-    tElem = elem[i].classList;
-    if (state) {
-      new_state = state;
-    } else if ( tElem.contains('inactive') ){
-      new_state = 'active';
-    } else {
-      new_state = 'inactive';
-    }
-    tElem.remove('inactive');
-    tElem.remove('active');
-    tElem.add(`${new_state}`);
-  }
-}
-function toggleBurger(state){
-  let elem = document.querySelector('.nav-burger').classList
-  if (state) {
-    new_state = state;
-  } else if (elem.contains('active')){
-    new_state = 'inactive';
-  } else if (elem.contains('inactive')){
-    new_state = 'active';
-  } else {
-    new_state = 'inactive';
-  }
-  if (new_state == 'active'){
-    setState('nav-burger', new_state);
-    document.querySelector('.nav-menu').classList.add('dropdown');
-    document.querySelector('.navbar').style.flexFlow = 'column';
-    document.querySelector('.nav-menu').style.flexFlow = 'column';
-    document.querySelector('.nav-menu').style.marginLeft = '0';
-    setState('nav-menu', 'inactive');
-  } else if (new_state == 'inactive'){
-    setState('nav-burger', new_state);
-    setState('nav-menu', 'active');
-    document.querySelector('.nav-menu').classList.remove('dropdown');
-    document.querySelector('.navbar').style.flexFlow = 'row';
-    document.querySelector('.nav-menu').style.flexFlow = 'row';
-    document.querySelector('.nav-menu').style.marginLeft = 'auto';
-  }
-  return new_state
-}
-
-function bindEventListener() {
-  console.log("Binding Event Listeners");
-  let elem = document.getElementsByClassName('toggle')
-  for (e=0; e < elem.length; e++){
-    elem[e].addEventListener('click', (e) => {
-      let tIcon = e.target.classList
-      if ( e.target.parentElement.classList.contains('placeholder-toggle') ){
-        tIcon.toggle('fa-square');
-        tIcon.toggle('fa-check-square');
-        setState('placeholder');
-      } else if ( e.target.parentElement.classList.contains('burger-toggle') ){
-        toggleBurger();
-        tIcon.toggle('fa-square');
-        tIcon.toggle('fa-check-square');
-      } else if ( e.target.parentElement.classList.contains('nav-burger') ){
-        setState('nav-menu');
-        tIcon.toggle('fa-square');
+Vue.component('placeholder', {
+  template: `
+    <div class="placeholder">
+      <div class="placeholder-toggle button" @click="onTogglePlaceholder">Placeholder</div>
+      <div class="content placeholder-text" v-bind:style="{ 'display': isActive }">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec vehicula diam. In hac habitasse platea dictumst. Nunc placerat consectetur est, nec sagittis nulla sollicitudin quis. In hac habitasse platea dictumst. Phasellus vel eros dolor. Donec a lorem ac mauris pellentesque mattis non egestas sem. Phasellus eu risus porttitor, vehicula risus nec, ultrices tellus. Sed molestie ligula ac tellus pellentesque sagittis. Phasellus eu pulvinar leo. Ut sed erat consequat, accumsan justo at, dictum sapien. Donec dictum luctus blandit. Fusce dapibus tortor sed purus egestas, sit amet faucibus mi cursus. Vivamus tempus mauris congue nisl tristique porta. Vivamus blandit imperdiet dui ac pharetra. Donec ligula diam, tristique id feugiat a, tincidunt nec purus. Donec sed varius mauris, nec tincidunt neque.
+        Praesent nec elit ut lorem ultricies condimentum eu id odio. Sed non pretium massa. Nulla sed dapibus metus. Phasellus a nisi ornare, posuere neque ultrices, dapibus justo. Curabitur eu efficitur felis, sed euismod risus. Nulla luctus ante ac varius elementum. Morbi justo quam, molestie nec nisi aliquam, hendrerit malesuada purus. Nam ante odio, tempor et eleifend gravida, tempor a ligula. Sed maximus lobortis velit, a laoreet mi congue in. Morbi ac volutpat lectus. Nulla eu dui leo. Pellentesque dignissim mauris eu orci rutrum eleifend. Nulla ultricies odio a enim scelerisque, id viverra odio pretium.
+        Etiam nulla orci, vehicula sit amet rutrum ac, sollicitudin vel leo. Sed at augue in tellus semper commodo. Proin eget velit in leo condimentum hendrerit vitae sit amet nibh. Mauris massa lacus, efficitur et enim vitae, sollicitudin aliquam sapien. Suspendisse condimentum pellentesque purus at viverra. Duis interdum semper diam, ut efficitur magna fermentum nec. Duis venenatis nisl et tempus lacinia. Aliquam augue augue, facilisis maximus sodales ut, mattis non tortor. Suspendisse luctus pretium facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec odio eget dolor tristique malesuada vel ac arcu. In vehicula nunc mi, at sollicitudin nulla iaculis eget. Donec eu massa feugiat, ultricies urna quis, dapibus augue. Curabitur vel porttitor nibh.
+        Nam vulputate purus eu nisi condimentum, a lobortis quam molestie. Nunc risus orci, congue a felis sed, hendrerit varius mauris. Cras imperdiet luctus neque nec accumsan. Nunc tincidunt, ligula a aliquam bibendum, mi arcu fringilla ante, sed luctus sapien mi eget enim. Praesent imperdiet nisl eget ipsum commodo dapibus. Donec imperdiet lectus vel fringilla posuere. Mauris posuere ornare ipsum eu faucibus. Aliquam eget eros lorem. Proin interdum quis arcu vel dapibus. Maecenas sit amet interdum leo. Pellentesque pulvinar erat in purus varius, at interdum leo mollis. Curabitur eget tempus nisi. Fusce ut ultricies magna, pellentesque aliquam tortor.
+        In sodales rhoncus volutpat. Sed interdum fermentum vulputate. Donec tincidunt ligula nisl, vitae posuere leo dapibus scelerisque. Integer ullamcorper ex magna, eget porttitor nisi iaculis a. Vivamus vestibulum auctor quam, ut fermentum elit hendrerit nec. Praesent a rhoncus orci, in tincidunt erat. Sed imperdiet ex id tellus vestibulum, ut ullamcorper purus finibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+      </div>
+    </div>
+  `,
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  methods: {
+    onTogglePlaceholder() {
+      if (this.isActive != "block") {
+        this.isActive = "block";
+      } else {
+        this.isActive = "none";
       }
-    });
-  }
-}
+    }
+  },
+});
+
+var app = new Vue({
+  el: '#app-container',
+  data: {
+    message: "Hi"
+    }
+  })
